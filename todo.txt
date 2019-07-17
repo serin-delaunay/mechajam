@@ -1,7 +1,4 @@
 
-TODO step 2: tokens produce attacks.
-a row of attack icons (super simple, maybe even just one type) above the top line.
-
 TODO step 3: opponent.
 a second list of tokens also producing attacks. right justified.
 

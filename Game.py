@@ -1,10 +1,11 @@
 from bearlibterminal import terminal as blt
 from time import sleep
+import Token
 
 
 class Game:
     def __init__(self):
-        self.health_points = ['Health' for _ in range(10)]
+        self.health_points = [Token.HealthToken for _ in range(10)]
         self.stop = True
 
     def run(self):
@@ -19,7 +20,8 @@ class Game:
     def draw(self):
         blt.clear()
         for i, s in enumerate(self.health_points):
-            blt.printf(0, i, s)
+            blt.printf(0, i + 2, s.name)
+            blt.put(i * 2, 0, s.attack.symbol)
         blt.refresh()
 
     def read(self):
