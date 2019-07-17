@@ -1,12 +1,36 @@
 from typing import Optional
 from dataclasses import dataclass
 import Attack
+from enum import Enum
+
+
+class TokenState(Enum):
+    healthy = True
+    damaged = True
+
+
+@dataclass
+class TokenType:
+    name: str
+    healthy_attack: Optional[Attack.Attack]
+    damaged_attack: Optional[Attack.Attack]
+
+    def attack(self, state: TokenState):
+        if state is TokenState.healthy:
+            return self.healthy_attack
+        elif state is TokenState.damaged:
+            return self.damaged_attack
+        else:
+            raise RuntimeError("Invalid token state")
 
 
 @dataclass
 class Token:
-    name: str
-    attack: Optional[Attack.Attack] = None
+    type: TokenType
+    state: TokenState
+
+    def attack(self):
+        return self.type.attack(self.state)
 
 
-HealthToken = Token("Health", Attack.HitAttack)
+HealthToken = TokenType("Health", Attack.HitAttack, None)
