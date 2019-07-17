@@ -1,7 +1,4 @@
 
-TODO step 3: opponent.
-a second list of tokens also producing attacks. right justified.
-
 TODO step 4: combat.
 press a key to step through the battle turn by turn.
 attacks damage tokens, nothing special happens.
