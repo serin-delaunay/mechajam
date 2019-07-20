@@ -1,8 +1,4 @@
 
-TODO step 4: combat.
-press a key to step through the battle turn by turn.
-attacks damage tokens, nothing special happens.
-
 TODO step 5: control.
 arrow keys and action button to activate (restore) a token each turn.
 

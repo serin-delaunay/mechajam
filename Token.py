@@ -32,5 +32,9 @@ class Token:
     def attack(self):
         return self.type.attack(self.state)
 
+    def __str__(self):
+        colour = "white" if self.state is TokenState.healthy else "red"
+        return f"[color={colour}]{self.type.name}[/color]"
+
 
 HealthToken = TokenType("Health", Attack.HitAttack, None)
