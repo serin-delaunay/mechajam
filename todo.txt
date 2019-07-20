@@ -1,36 +1,36 @@
 
 TODO step 5: control.
-arrow keys and action button to activate (restore) a token each turn.
+    arrow keys and action button to activate (restore) a token each turn.
 
 TODO step 6: AI.
-input only controls left player, right player token activations are automated (random)
+    input only controls left player, right player token activations are automated (random)
 
 TODO step 7: mechanics.
-add a very small number of tokens with differing battle mechanics (ie. attack types).
-ensure AI choices have a bare minimum of utility.
+    add a very small number of tokens with differing battle mechanics (ie. attack types).
+    ensure AI choices have a bare minimum of utility.
 
 TODO step 8: tooltips.
-display tooltips for tokens and attacks on mouseover.
+    display tooltips for tokens and attacks on mouseover.
 
 TODO step 9: setup.
-add a second game mode to choose tokens before battle. AI selects randomly.
+    add a second game mode to choose tokens before battle. AI selects randomly.
 
 TODO step 10: cycle.
-after end of combat, go back to setup with some information/tokens preserved.
+    after end of combat, go back to setup with some information/tokens preserved.
 
 TODO step 11: compactify.
-replace list of tokens with row of tokens below where attacks appear.
+    replace list of tokens with row of tokens below where attacks appear.
 
 TODO step 12: animate.
-show token/attack contests in stages each turn.
-add controls to show the action in finer-grained steps if desired.
+    show token/attack contests in stages each turn.
+    add controls to show the action in finer-grained steps if desired.
 
 TODO step 13: expand.
-add many more interesting tokens and attacks.
-estimate their value to encourage appropriate AI decisions.
+    add many more interesting tokens and attacks.
+    estimate their value to encourage appropriate AI decisions.
 
 TODO step 14: balance.
-run automated choosing/combats with random tokens to get a better sense of how to proceed.
+    run automated choosing/combats with random tokens to get a better sense of how to proceed.
 
 TODO step 15: polish and build.
-get a .exe so that non-developers can play on windows.
+    get a .exe so that non-developers can play on windows.
