@@ -1,7 +1,4 @@
 
-TODO step 6: AI.
-    input only controls left player, right player token activations are automated (random)
-
 TODO step 7: mechanics.
     add a very small number of tokens with differing battle mechanics (ie. attack types).
     ensure AI choices have a bare minimum of utility.
