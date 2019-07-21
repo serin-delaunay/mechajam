@@ -32,6 +32,8 @@ class Game:
         self.active_player().process_activations()
         self.resolve_combat(self.active_player(), self.inactive_player())
         self.next_turn_left = not self.next_turn_left
+        if self.active_player().ai:
+            self.active_player().automate_activations()
 
     def active_player(self):
         return self.left_player if self.next_turn_left else self.right_player

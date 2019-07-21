@@ -13,8 +13,6 @@ class Combatant:
     selected_indices: Set[int] = field(default_factory=set)
 
     def process_activations(self):
-        if self.ai:
-            self.automate_activations()
         for i in self.selected_indices:
             self.health_tokens[i].state = TokenState.healthy
         self.selected_indices.clear()
