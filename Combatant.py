@@ -1,6 +1,6 @@
 from typing import List, Set
 from dataclasses import dataclass, field
-from Token import Token
+from Token import Token, TokenState
 
 
 @dataclass
@@ -9,6 +9,11 @@ class Combatant:
     active: bool = False
     highlighted_index: int = 0
     selected_indices: Set[int] = field(default_factory=set)
+
+    def process_activations(self):
+        for i in self.selected_indices:
+            self.health_tokens[i].state = TokenState.healthy
+        self.selected_indices.clear()
 
     def display_lines(self):
         return [t.display((i == self.highlighted_index) and self.active, i in self.selected_indices)

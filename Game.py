@@ -29,14 +29,15 @@ class Game:
         pass
 
     def step(self):
-        if self.next_turn_left:
-            self.resolve_combat(self.left_player, self.right_player)
-        else:
-            self.resolve_combat(self.right_player, self.left_player)
+        self.active_player().process_activations()
+        self.resolve_combat(self.active_player(), self.inactive_player())
         self.next_turn_left = not self.next_turn_left
 
     def active_player(self):
         return self.left_player if self.next_turn_left else self.right_player
+
+    def inactive_player(self):
+        return self.right_player if self.next_turn_left else self.left_player
 
     @staticmethod
     def resolve_combat(attacker, defender):

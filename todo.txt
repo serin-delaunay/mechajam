@@ -1,7 +1,4 @@
 
-TODO step 5: control.
-    arrow keys and action button to activate (restore) a token each turn.
-
 TODO step 6: AI.
     input only controls left player, right player token activations are automated (random)
 
