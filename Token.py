@@ -28,12 +28,10 @@ class TokenType:
 class Token:
     type: TokenType
     state: TokenState
-    selected: bool = False
 
-    def fg_bg_colours(self, highlighted: bool):
+    def fg_bg_colours(self, highlighted: bool, selected: bool):
         bg = "white" if highlighted else "black"
-
-        if self.selected:
+        if selected:
             fg = 'green'
         elif self.state is TokenState.damaged:
             fg = 'red'
@@ -44,8 +42,8 @@ class Token:
     def attack(self):
         return self.type.attack(self.state)
 
-    def display(self, highlighted: bool):
-        fg, bg = self.fg_bg_colours(highlighted)
+    def display(self, highlighted: bool, selected: bool):
+        fg, bg = self.fg_bg_colours(highlighted, selected)
         return f"[color={fg}][bkcolor={bg}]{self.type.name}[/bkcolor][/color]"
 
 

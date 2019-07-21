@@ -35,6 +35,9 @@ class Game:
             self.resolve_combat(self.right_player, self.left_player)
         self.next_turn_left = not self.next_turn_left
 
+    def active_player(self):
+        return self.left_player if self.next_turn_left else self.right_player
+
     @staticmethod
     def resolve_combat(attacker, defender):
         attacks = attacker.get_attacks()
@@ -70,3 +73,11 @@ class Game:
                 self.stop = True
             elif kp == blt.TK_SPACE:
                 self.step()
+            elif kp == blt.TK_UP:
+                self.active_player().move_up()
+            elif kp == blt.TK_DOWN:
+                self.active_player().move_down()
+            elif kp == blt.TK_LEFT:
+                self.active_player().move_left()
+            elif kp == blt.TK_RIGHT:
+                self.active_player().move_right()
