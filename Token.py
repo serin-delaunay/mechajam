@@ -28,13 +28,25 @@ class TokenType:
 class Token:
     type: TokenType
     state: TokenState
+    selected: bool = False
+
+    def fg_bg_colours(self, highlighted: bool):
+        bg = "white" if highlighted else "black"
+
+        if self.selected:
+            fg = 'green'
+        elif self.state is TokenState.damaged:
+            fg = 'red'
+        else:
+            fg = "black" if highlighted else "white"
+        return fg, bg
 
     def attack(self):
         return self.type.attack(self.state)
 
-    def __str__(self):
-        colour = "white" if self.state is TokenState.healthy else "red"
-        return f"[color={colour}]{self.type.name}[/color]"
+    def display(self, highlighted: bool):
+        fg, bg = self.fg_bg_colours(highlighted)
+        return f"[color={fg}][bkcolor={bg}]{self.type.name}[/bkcolor][/color]"
 
 
 HealthToken = TokenType("Health", Attack.HitAttack, None)
