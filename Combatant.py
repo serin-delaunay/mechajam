@@ -25,7 +25,7 @@ class Combatant:
                 for (i, t) in enumerate(self.health_tokens)]
 
     def get_attacks(self):
-        return [a for a in (token.attack() for token in self.health_tokens) if a is not None]
+        return sum((t.attack() for t in self.health_tokens), ())
 
     def move_up(self):
         if self.ai:

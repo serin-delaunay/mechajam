@@ -1,0 +1,40 @@
+{
+	"Attacks": [
+		{
+			"name": "Attack",
+			"symbol": "A"
+		},
+		{
+			"name": "Heavy",
+			"symbol": "H"
+		},
+		{
+			"name": "Pierce",
+			"symbol": "P"
+		}
+	],
+	"Tokens":[
+		{
+			"name": "Heart",
+			"healthy": {"actions": 1}
+		},
+		{
+			"name": "Spear",
+			"healthy": {"attacks": ["Pierce"]}
+		},
+		{
+			"name": "Axe",
+			"healthy": {"attacks": ["Heavy"]}
+		},
+		{
+			"name": "Fist",
+			"healthy": {"attacks": ["Attack"]}
+		},
+		{
+			"name": "Meat"
+		},
+		{
+			"name": "Armour"
+		}
+	]
+}

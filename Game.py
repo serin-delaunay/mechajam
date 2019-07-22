@@ -1,14 +1,13 @@
 from bearlibterminal import terminal as blt
 from time import sleep
-from Token import Token, HealthToken, TokenState
-from Attack import HitAttack
+from Token import Token
+from TokenType import TokenState
 from Combatant import Combatant
+import Data
 
 
 class Game:
     def __init__(self):
-        self.left_player = Combatant([Token(HealthToken, TokenState.healthy) for _ in range(10)])
-        self.right_player = Combatant([Token(HealthToken, TokenState.healthy) for _ in range(10)], ai=True)
         self.stop = True
         self.width = 80
         self.height = 50
@@ -17,6 +16,9 @@ class Game:
         self.highlighted_right = 0
         self.selections_left = []
         self.selections_right = []
+        Data.load()
+        self.left_player = Combatant([Token(Data.tokens["Fist"], TokenState.healthy) for _ in range(10)])
+        self.right_player = Combatant([Token(Data.tokens["Fist"], TokenState.healthy) for _ in range(10)], ai=True)
 
     def run(self):
         blt.open()
@@ -45,7 +47,7 @@ class Game:
     def resolve_combat(attacker, defender):
         attacks = attacker.get_attacks()
         for attack in attacks:
-            if attack is HitAttack:
+            if attack.name is not "":
                 for token in defender.health_tokens:
                     if token.state is TokenState.healthy:
                         token.state = TokenState.damaged
