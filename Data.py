@@ -1,10 +1,10 @@
 import json
-from typing import Dict
-import TokenType
 import Attack
+import TokenType
 
 attacks = {}
 tokens = {}
+
 
 def load(filename="data.json"):
     with open(filename) as data_file:

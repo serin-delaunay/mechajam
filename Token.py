@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from TokenType import TokenType
 from TokenState import TokenState
 
+
 @dataclass
 class Token:
     type: TokenType
