@@ -3,6 +3,7 @@ from time import sleep
 from Token import Token
 from TokenType import TokenState
 from Combatant import Combatant
+from ContestResult import ContestResult
 import Data
 
 
@@ -44,14 +45,34 @@ class Game:
         return self.right_player if self.next_turn_left else self.left_player
 
     @staticmethod
-    def resolve_combat(attacker, defender):
+    def resolve_contest(attack, token):
+        if token.state is TokenState.damaged:
+            return ContestResult(False, True, TokenState.damaged)
+        else:
+            return ContestResult(True, True, TokenState.damaged)
+
+    @classmethod
+    def resolve_combat(cls, attacker, defender):
         attacks = attacker.get_attacks()
-        for attack in attacks:
-            if attack.name is not "":
-                for token in defender.health_tokens:
-                    if token.state is TokenState.healthy:
-                        token.state = TokenState.damaged
-                        break
+        attack_index = 0
+        token_index = 0
+        stop = len(attacks) == 0
+
+        while not stop:
+            attack = attacks[attack_index]
+            token = defender.health_tokens[token_index]
+            result = cls.resolve_contest(attack, token)
+            token.state = result.new_state
+            if result.consume_attack:
+                if attack_index < len(attacks) - 1:
+                    attack_index += 1
+                else:
+                    stop = True
+            if result.next_token:
+                if token_index < len(defender.health_tokens) - 1:
+                    token_index += 1
+                else:
+                    stop = True
 
     def draw(self):
         assert self.width % 2 == 0, "Window size not divisible by 2"
