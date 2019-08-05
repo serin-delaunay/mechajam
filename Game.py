@@ -4,6 +4,7 @@ from Token import Token
 from TokenType import TokenState
 from Combatant import Combatant
 from AttackResolver import AttackResolver
+from random import choice
 import Data
 
 
@@ -12,18 +13,29 @@ class Game:
         self.stop = True
         self.width = 80
         self.height = 50
-        self.next_turn_left = True
-        self.highlighted_left = 0
-        self.highlighted_right = 0
-        self.selections_left = []
-        self.selections_right = []
         Data.load()
-        self.left_player = Combatant([Token(Data.tokens["Fist"], TokenState.healthy) for _ in range(10)])
-        self.right_player = Combatant([Token(Data.tokens["Fist"], TokenState.healthy) for _ in range(10)], ai=True)
+        self.left_player = None
+        self.right_player = None
+        self.next_turn_left = True
+
+    def new_game(self):
+        self.left_player = self.generate_combatant(ai=True)
+        self.right_player = self.generate_combatant(ai=True)
+        self.next_turn_left = True
+
+    @staticmethod
+    def generate_combatant(ai=False):
+        tokens = []
+        for i in range(10):
+            tokens.append(Token(choice(list(Data.tokens.values())), TokenState.healthy))
+        for i in range(2):
+            tokens.append(Token(Data.tokens["Heart"], TokenState.healthy))
+        return Combatant(tokens, ai=ai)
 
     def run(self):
         blt.open()
         blt.set(f"window.size={self.width}x{self.height}")
+        self.new_game()
         self.stop = False
         while not self.stop:
             self.draw()
@@ -78,3 +90,5 @@ class Game:
                 self.active_player().move_left()
             elif kp == blt.TK_RIGHT:
                 self.active_player().move_right()
+            elif kp == blt.TK_R:
+                self.new_game()

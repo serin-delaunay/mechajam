@@ -18,8 +18,11 @@ class Token:
             fg = "black" if highlighted else "white"
         return fg, bg
 
+    def mode(self):
+        return self.type.mode(self.state)
+
     def attack(self):
-        return self.type.mode(self.state).attacks
+        return self.mode().attacks
 
     def display(self, highlighted: bool, selected: bool):
         fg, bg = self.fg_bg_colours(highlighted, selected)

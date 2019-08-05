@@ -1,8 +1,4 @@
 
-TODO step 7: mechanics.
-    add a very small number of tokens with differing battle mechanics (ie. attack types).
-    ensure AI choices have a bare minimum of utility.
-
 TODO step 8: tooltips.
     display tooltips for tokens and attacks on mouseover.
 
