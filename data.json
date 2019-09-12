@@ -2,39 +2,62 @@
 	"Attacks": [
 		{
 			"name": "Attack",
-			"symbol": "A"
+			"symbol": "A",
+			"info": "Damages the next healthy token."
 		},
 		{
 			"name": "Heavy",
-			"symbol": "H"
+			"symbol": "H",
+			"info": "Damages the next healthy token. Can damage [Token:Armour] tokens."
 		},
 		{
 			"name": "Pierce",
-			"symbol": "P"
+			"symbol": "P",
+			"info": "Bypasses the next healthy token, and damages the next one."
 		}
 	],
 	"Tokens":[
 		{
 			"name": "Heart",
-			"healthy": {"actions": 1}
+			"healthy": {
+				"actions": 1
+			},
+			"info": "Provides an action point when healthy."
 		},
 		{
 			"name": "Spear",
-			"healthy": {"attacks": ["Pierce"]}
+			"healthy": {
+				"attacks": [
+					"Pierce"
+				]
+			},
+			"info": "Generates a [Attack:Pierce] attack when healthy."
 		},
 		{
 			"name": "Axe",
-			"healthy": {"attacks": ["Heavy"]}
+			"healthy": {
+				"attacks": [
+					"Heavy"
+				]
+			},
+			"info": "Generates a [Attack:Heavy] attack when healthy."
 		},
 		{
 			"name": "Fist",
-			"healthy": {"attacks": ["Attack"]}
+			"healthy": {
+				"attacks": [
+					"Attack"
+				]
+			},
+			"info": "Generates an [Attack:Attack] when healthy."
 		},
 		{
-			"name": "Meat"
+			"name": "Meat",
+			"info": "Can absorb one attack."
 		},
 		{
-			"name": "Armour"
+			"name": "Armour",
+			"info": "Can only be damaged by [Attack:Heavy] attacks."
 		}
 	]
 }

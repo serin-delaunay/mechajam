@@ -2,6 +2,7 @@ from typing import List, Set
 from dataclasses import dataclass, field
 from random import sample
 from Token import Token, TokenState
+import Info
 
 
 def player_input(fn):
@@ -9,6 +10,7 @@ def player_input(fn):
         if self.ai:
             return
         fn(self, *args, **kwargs)
+        self.highlight_changed = True
 
     return fn_wrapped
 
@@ -19,7 +21,17 @@ class Combatant:
     ai: bool = False
     active: bool = False
     highlighted_index: int = 0
+    _highlight_info: str = ""
+    highlight_changed: bool = True
     selected_indices: Set[int] = field(default_factory=set)
+
+    def highlight_info(self):
+        if self.highlight_changed:
+            token_name = self.health_tokens[self.highlighted_index].type.name
+            self._highlight_info = '\n'.join(Info.complete_info(("Token", token_name), 10))
+            self.highlight_changed = False
+        return self._highlight_info
+
 
     def process_activations(self):
         for i in self.selected_indices:

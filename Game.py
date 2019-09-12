@@ -17,6 +17,7 @@ class Game:
         self.left_player = None
         self.right_player = None
         self.next_turn_left = True
+        self.current_info = ""
 
     def new_game(self):
         self.left_player = self.generate_combatant(ai=True)
@@ -67,6 +68,10 @@ class Game:
         for (i, a) in enumerate(player.get_attacks()):
             x = self.width - 1 - (i * 2) if align_right else (i * 2)
             blt.put(x, 0, a.symbol)
+
+    def draw_info(self, player):
+        info = player.highlight_info()
+        blt.puts(0, 20, info, width=self.width, height=self.height - 20, align=blt.TK_ALIGN_LEFT)
         
     def draw(self):
         assert self.width % 2 == 0, "Window size not divisible by 2"
@@ -78,6 +83,7 @@ class Game:
         self.draw_attacks(self.left_player)
         self.draw_tokens(self.right_player, True)
         self.draw_attacks(self.right_player, True)
+        self.draw_info(self.active_player())
 
         blt.refresh()
 
@@ -98,3 +104,8 @@ class Game:
                 self.active_player().move_right()
             elif kp == blt.TK_R:
                 self.new_game()
+            elif kp == blt.TK_MOUSE_MOVE:
+                self.check_mouse()
+
+    def check_mouse(self):
+        pass
